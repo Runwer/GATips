@@ -66,27 +66,35 @@ def get_first_profile_id(service):
   return None
 
 
-def get_results(service, profile_id):
+def get_results(service, profile_id, mets, dims):
   # Use the Analytics Service Object to query the Core Reporting API
   # for the number of sessions within the past seven days.
   return service.data().realtime().get(
       ids='ga:' + profile_id,
-      metrics='rt:activeUsers',
-      dimensions='rt:pageTitle, rt:pagePath').execute()
+      metrics=mets,
+      dimensions=dims).execute()
 
 
 def out_results(results):
   # Print data nicely for the user.
   if results:
-    print 'View (Profile): %s' % results.get('profileInfo').get('profileName')
+    #print 'View (Profile): %s' % results.get('profileInfo').get('profileName')
     temp = results.get('rows')
-    tempnum = [[i[0], int(i[1])] for i in temp]
-    realtime = sorted(tempnum, key=itemgetter(1), reverse=True)
+    if len(temp[0]) == 3:
+      tempnum = [[i[0], i[1], int(i[2])] for i in temp]
+      realtime = sorted(tempnum, key=itemgetter(2), reverse=True)
+      total = sum(i[2] for i in tempnum)
+      return realtime, total
+    else:
+      tempnum = [[i[0], int(i[1])] for i in temp]
+      realtime = sorted(tempnum, key=itemgetter(1), reverse=True)
+      return realtime
     output = []
-    for res in realtime:
-      if res[0] != 'Fodbold, nyheder, livescore, video, spil, odds | Tipsbladet.dk':
-        output.append('Users: ' + str(res[1]) + ' - Title: ' + res[0])
-    return output
+    #for res in realtime:
+      #if res[0] != 'Fodbold, nyheder, livescore, video, spil, odds | Tipsbladet.dk':
+        #output.append('Users: ' + str(res[2]) + ' - Title: ' + res[0])
+    #return output
+
 
   else:
     return 'No results found'
@@ -94,7 +102,7 @@ def out_results(results):
 
 
 
-def main():
+def main(mets, dims):
   # Define the auth scopes to request.
   scope = ['https://www.googleapis.com/auth/analytics.readonly']
 
@@ -107,8 +115,8 @@ def main():
   service = get_service('analytics', 'v3', scope, key_file_location,
     service_account_email)
   profile = get_first_profile_id(service)
-  return out_results(get_results(service, profile))
+  return out_results(get_results(service, profile, mets, dims))
 
 
 if __name__ == '__main__':
-  main()
+  print main('rt:activeUsers', 'rt:pageTitle, rt:pagePath' )[1]

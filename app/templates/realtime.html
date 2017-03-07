@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA Tipsbladet</title>
+    <meta name="description" content="Responsive website">
+    <meta name="keywords" content="responsive website">
+    <meta name="author" content="site">
+
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="/static/css/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+
+
+</head>
+
+<body>
+
+<!--
+		<div class="headertop">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="welcomemessage">
+							welcome to fliqpick
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="htoprightmenu">
+							<ul>
+								<li><a href="">FAQ</a></li>&nbsp;&nbsp;&nbsp;|&nbsp;
+								<li><a href="">Privacy</a></li>
+								<li class="searchbox">
+								   <input type="search" placeholder="Search">
+									<i class="fa fa-search"></i>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <!--end-->
+<div class="container">
+  <div class="row">
+    <section class="row text-center placeholders">
+            <div class="card col-6 col-sm-3 placeholder">
+                <!-- Image -->
+
+                <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle card-img-top" alt="">
+                    <!-- Text Overlay -->
+                <div class="card-img-overlay card-inverse align-middle"></br></br></br>
+                    <h4 class="card-title align-middle"><p> </p> <p></p><p> </p>{{ GA_tot }}</h4>
+
+                    </div>
+                <h3>Total Users</h3>
+
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+    </section>
+  </div>
+</div>
+
+
+
+
+  <div class="row">
+    <div class="col-sm-6 col-xs-6">
+        <section>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Active Users</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for out in GA_req %}
+              <tr>
+                <th scope="row">{{ loop.index }}.</th>
+                <td><a href="http://www.tipsbladet.dk{{ out[1] }}" target="_blank">{{out[0]}}</a> </td>
+                <td>{{out[2]}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </section>
+    </div>
+
+
+
+    <div class="col-sm-6 col-xs-6">
+        <section>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Source</th>
+                <th>Active Users</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for src in GA_src %}
+              <tr>
+                <th scope="row">{{ loop.index }}.</th>
+                <td>{{src[0]}} </td>
+                <td>{{src[1]}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </section>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

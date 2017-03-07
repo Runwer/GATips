@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA Tipsbladet</title>
+    <meta name="description" content="Responsive website">
+    <meta name="keywords" content="responsive website">
+    <meta name="author" content="site">
+
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<!--
+		<div class="headertop">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="welcomemessage">
+							welcome to fliqpick
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="htoprightmenu">
+							<ul>
+								<li><a href="">FAQ</a></li>&nbsp;&nbsp;&nbsp;|&nbsp;
+								<li><a href="">Privacy</a></li>
+								<li class="searchbox">
+								   <input type="search" placeholder="Search">
+									<i class="fa fa-search"></i>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <!--end-->
+
+
+    <section class="main">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Users Active</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for title,url, active_users in GA_req %}
+          <tr>
+            <th scope="row">1.</th>
+            <td>{{title}}</td>
+            <td>{{active_users}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+
+</body>
+
+</html>
