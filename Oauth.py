@@ -122,4 +122,5 @@ def main(mets, dims):
 
 
 if __name__ == '__main__':
-  print main('rt:activeUsers', 'rt:pageTitle, rt:pagePath')[2]
+  print main('rt:pageviews', 'rt:pageTitle, rt:pagePath')
+  print main('rt:pageviews', 'rt:pageTitle, rt:minutesAgo')
