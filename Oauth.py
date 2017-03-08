@@ -84,11 +84,14 @@ def out_results(results):
       tempnum = [[i[0], i[1], int(i[2])] for i in temp]
       realtime = sorted(tempnum, key=itemgetter(2), reverse=True)
       total = sum(i[2] for i in tempnum)
-      return realtime, total
+      inart = round((float(sum([int(x[2]) for x in tempnum if 'nyhed' in x[1]]))/total)*100, 2)
+      return realtime, total, inart
     else:
       tempnum = [[i[0], int(i[1])] for i in temp]
       realtime = sorted(tempnum, key=itemgetter(1), reverse=True)
-      return realtime
+      fb = [x[1] for x in tempnum if x[0] == 'Facebook'][0]
+      eb = [x[1] for x in tempnum if x[0] == 'ekstrabladet.dk'][0]
+      return realtime, fb, eb
     output = []
     #for res in realtime:
       #if res[0] != 'Fodbold, nyheder, livescore, video, spil, odds | Tipsbladet.dk':
@@ -119,4 +122,4 @@ def main(mets, dims):
 
 
 if __name__ == '__main__':
-  print main('rt:activeUsers', 'rt:pageTitle, rt:pagePath' )[1]
+  print main('rt:activeUsers', 'rt:pageTitle, rt:pagePath')[2]
