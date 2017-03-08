@@ -1,7 +1,7 @@
 """A simple example of how to access the Google Analytics API."""
 from operator import itemgetter
 import argparse
-from apiclient.discovery import build
+from googleapiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 import httplib2
 from oauth2client import client
