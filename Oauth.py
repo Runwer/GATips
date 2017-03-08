@@ -25,8 +25,8 @@ def get_service(api_name, api_version, scope, key_file_location,
     A service that is connected to the specified API.
   """
 
-  credentials = ServiceAccountCredentials.from_p12_keyfile(
-    service_account_email, key_file_location, scopes=scope)
+
+  credentials = ServiceAccountCredentials.from_json_keyfile_name(key_file_location, scopes=scope)
 
   http = credentials.authorize(httplib2.Http())
 
@@ -109,7 +109,7 @@ def main(mets, dims):
   # Use the developer console and replace the values with your
   # service account email and relative location of your key file.
   service_account_email = '847145114920-2fihqksd8d3nmg92tocfev6a16mr25km@developer.gserviceaccount.com'
-  key_file_location = 'tipsbladet-4c8f2663d5ad.p12'
+  key_file_location = 'tipsbladet-3fd1ffe0ac14.json'
 
   # Authenticate and construct service.
   service = get_service('analytics', 'v3', scope, key_file_location,
