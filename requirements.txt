@@ -14,3 +14,4 @@ Werkzeug==0.11.15
 google-api-python-client==1.6.2
 oauth2client==4.0.0
 httplib2==0.10.3
+requests==2.13.0
